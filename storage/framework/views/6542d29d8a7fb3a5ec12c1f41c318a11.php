@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="p-4">
-        <form action="<?php echo e(route('kegiatan.update',$kegiatan->id_kegiatan)); ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo e(route('kegiatan.update',$kegiatan->id_kegiatan)); ?>" method="POST" enctype="multipart/form-data" id="formKegiatanEdit">
             <?php echo csrf_field(); ?> <?php echo method_field('PUT'); ?>
             <div class="mb-3">
                 <label class="form-label">Nama Kegiatan <span style="color:#ef4444;">*</span></label>
@@ -133,7 +133,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
             <div class="d-flex gap-2 pt-2">
-                <button type="submit" style="background:linear-gradient(135deg,#f59e0b,#f97316);border:none;color:white;font-weight:700;padding:10px 28px;border-radius:10px;cursor:pointer;font-size:14px;transition:all .3s;box-shadow:0 4px 12px rgba(245,158,11,.3);display:inline-flex;align-items:center;gap:8px;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(245,158,11,.35)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(245,158,11,.3)'">
+                <button type="submit" id="btnUpdate" style="background:linear-gradient(135deg,#f59e0b,#f97316);border:none;color:white;font-weight:700;padding:10px 28px;border-radius:10px;cursor:pointer;font-size:14px;transition:all .3s;box-shadow:0 4px 12px rgba(245,158,11,.3);display:inline-flex;align-items:center;gap:8px;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(245,158,11,.35)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(245,158,11,.3)'">
                     <i class="fas fa-save"></i>Update Data
                 </button>
                 <a href="<?php echo e(route('kegiatan.index')); ?>" class="btn-secondary-custom px-4"><i class="fas fa-times"></i>Batal</a>
@@ -156,6 +156,11 @@ function prev(i) {
         r.readAsDataURL(i.files[0]);
     }
 }
+document.getElementById('formKegiatanEdit').addEventListener('submit', function(){
+    const btn = document.getElementById('btnUpdate');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Memperbarui...';
+});
 </script>
 <?php $__env->stopPush(); ?>
 

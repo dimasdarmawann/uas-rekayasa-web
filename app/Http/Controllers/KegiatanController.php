@@ -1,17 +1,24 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-class KegiatanController extends Controller {
-    public function index() {
+
+class KegiatanController extends Controller
+{
+    public function index()
+    {
         $kegiatans = Kegiatan::latest()->get();
         return view('kegiatan.index', compact('kegiatans'));
     }
-    public function create() {
+    public function create()
+    {
         return view('kegiatan.create');
     }
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
             'hari'          => 'required|string',
@@ -42,11 +49,13 @@ class KegiatanController extends Controller {
         ]);
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan!');
     }
-    public function edit($id) {
+    public function edit($id)
+    {
         $kegiatan = Kegiatan::findOrFail($id);
         return view('kegiatan.edit', compact('kegiatan'));
     }
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $kegiatan = Kegiatan::findOrFail($id);
         $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
@@ -78,7 +87,8 @@ class KegiatanController extends Controller {
         ]);
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil diperbarui!');
     }
-    public function destroy($id) {
+    public function destroy($id)
+    {
         Kegiatan::findOrFail($id)->delete();
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil dihapus!');
     }
@@ -87,10 +97,11 @@ class KegiatanController extends Controller {
      * Resize (max width 800px) & compress gambar sebelum disimpan,
      * biar storage gak bengkak kalo user upload foto 5-10MB dari HP.
      */
-    private function compressAndStore($file) {
+    private function compressAndStore($file)
+    {
         $ext = strtolower($file->getClientOriginalExtension());
         $filename = 'kegiatan_' . uniqid() . '.' . ($ext === 'png' ? 'png' : 'jpg');
-        $destDir = storage_path('app/public/kegiatan');
+        $destDir = public_path('uploads/kegiatan');
         if (!is_dir($destDir)) mkdir($destDir, 0755, true);
 
         [$width, $height] = getimagesize($file->getRealPath());
@@ -119,9 +130,10 @@ class KegiatanController extends Controller {
         imagedestroy($src);
         imagedestroy($dst);
 
-        return 'kegiatan/' . $filename;
+        return 'uploads/kegiatan/' . $filename;
     }
-    public function exportPdf() {
+    public function exportPdf()
+    {
         $kegiatans = Kegiatan::all();
         $pdf = Pdf::loadView('kegiatan.pdf', compact('kegiatans'))->setPaper('a4', 'landscape');
         return $pdf->download('Laporan-Kegiatan-Ekstrakurikuler.pdf');

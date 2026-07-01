@@ -70,7 +70,7 @@
                         <td style="font-weight:700;color:#6366f1;width:50px;"><?php echo e($i+1); ?></td>
                         <td style="width:80px;">
                             <?php if($k->gambar): ?>
-                                <img src="<?php echo e(asset('storage/'.$k->gambar)); ?>" style="width:72px;height:52px;object-fit:contain;border-radius:9px;border:2px solid #f1f5f9;background:#0b1d3a;padding:4px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="<?php echo e(asset($k->gambar)); ?>" style="width:72px;height:52px;object-fit:contain;border-radius:9px;border:2px solid #f1f5f9;background:#0b1d3a;padding:4px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
                             <?php else: ?>
                                 <div style="width:64px;height:46px;background:#f8fafc;border-radius:9px;display:flex;align-items:center;justify-content:center;border:2px dashed #e2e8f0;">
                                     <i class="fas fa-image" style="color:#cbd5e1;font-size:16px;"></i>
@@ -150,5 +150,4 @@ $(document).ready(function(){
 });
 </script>
 <?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\crud_uas_nim_UAS\resources\views/kegiatan/index.blade.php ENDPATH**/ ?>

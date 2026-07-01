@@ -175,10 +175,10 @@
                  '{{ addslashes($kegiatan->hari) }}',
                  '{{ addslashes($kegiatan->waktu) }}',
                  '{{ addslashes($kegiatan->pembina) }}',
-                 '{{ $kegiatan->gambar ? asset('storage/' . $kegiatan->gambar) : '' }}'
+                 '{{ $kegiatan->gambar ? asset($kegiatan->gambar) : '' }}'
              )">
             @if($kegiatan->gambar)
-                <img src="{{ asset('storage/' . $kegiatan->gambar) }}"
+                <img src="{{ asset($kegiatan->gambar) }}"
                      alt="{{ $kegiatan->nama_kegiatan }}"
                      class="card-img" loading="lazy">
             @else

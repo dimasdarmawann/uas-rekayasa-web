@@ -71,7 +71,7 @@
                         <td style="font-weight:700;color:#6366f1;width:50px;">{{ $i+1 }}</td>
                         <td style="width:80px;">
                             @if($k->gambar)
-                                <img src="{{ asset('storage/'.$k->gambar) }}" style="width:72px;height:52px;object-fit:contain;border-radius:9px;border:2px solid #f1f5f9;background:#0b1d3a;padding:4px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="{{ asset($k->gambar) }}" style="width:72px;height:52px;object-fit:contain;border-radius:9px;border:2px solid #f1f5f9;background:#0b1d3a;padding:4px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
                             @else
                                 <div style="width:64px;height:46px;background:#f8fafc;border-radius:9px;display:flex;align-items:center;justify-content:center;border:2px dashed #e2e8f0;">
                                     <i class="fas fa-image" style="color:#cbd5e1;font-size:16px;"></i>

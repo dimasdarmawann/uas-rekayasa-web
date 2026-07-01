@@ -175,10 +175,10 @@
                  '<?php echo e(addslashes($kegiatan->hari)); ?>',
                  '<?php echo e(addslashes($kegiatan->waktu)); ?>',
                  '<?php echo e(addslashes($kegiatan->pembina)); ?>',
-                 '<?php echo e($kegiatan->gambar ? asset('storage/' . $kegiatan->gambar) : ''); ?>'
+                 '<?php echo e($kegiatan->gambar ? asset($kegiatan->gambar) : ''); ?>'
              )">
             <?php if($kegiatan->gambar): ?>
-                <img src="<?php echo e(asset('storage/' . $kegiatan->gambar)); ?>"
+                <img src="<?php echo e(asset($kegiatan->gambar)); ?>"
                      alt="<?php echo e($kegiatan->nama_kegiatan); ?>"
                      class="card-img" loading="lazy">
             <?php else: ?>
